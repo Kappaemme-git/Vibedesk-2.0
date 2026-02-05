@@ -760,8 +760,17 @@ export default function App() {
   }
 
   function savePreset() {
+    if (!user) {
+      setIsAuthOpen(true);
+      showModal("Please log in to save presets.");
+      return;
+    }
     const name = presetName.trim();
     if (!name) return;
+    if (!isPremium && presets.length >= 2) {
+      showModal("Free plan allows up to 2 presets. Upgrade to save more.");
+      return;
+    }
     const next = [
       ...presets,
       {
@@ -1618,72 +1627,75 @@ export default function App() {
               <div className="preset-panel">
                 <div className="preset-header">
                   <label>Presets</label>
-                  {!isPremium ? <span className="preset-lock">Premium</span> : null}
+                  {!isPremium ? <span className="preset-lock">Free · 2 max</span> : null}
                 </div>
-                {isPremium ? (
-                  <>
-                    <div className="preset-create">
-                      <input
-                        type="text"
-                        placeholder="Preset name"
-                        value={presetName}
-                        onChange={(e) => setPresetName(e.target.value)}
-                      />
-                      <button onClick={savePreset}>Save</button>
-                    </div>
-                    <div className="preset-list">
-                      {presets.length === 0 ? (
-                        <div className="preset-empty">No presets yet.</div>
-                      ) : (
-                        presets.map((preset) => (
-                        <div
-                          className={`preset-item ${
-                            preset.sessionMinutes === sessionMinutes &&
-                            preset.themeIndex === currentThemeIndex &&
-                            preset.radioIndex === currentRadioIndex &&
-                            preset.ambientIndex === currentAmbientIndex &&
-                            preset.radioVolume === radioVolume &&
-                            preset.ambientVolume === ambientVolume
-                              ? "active"
-                              : ""
-                          }`}
-                          key={preset.id}
-                        >
-                            <div className="preset-info">
-                              <strong>{preset.name}</strong>
-                              <span>{preset.sessionMinutes}m · {themeLibrary[preset.themeIndex]?.name}</span>
-                            </div>
-                            <div className="preset-actions">
-                              <button onClick={() => applyPreset(preset)}>Apply</button>
-                              <button className="preset-delete" onClick={() => deletePreset(preset.id)}>
-                                <i className="fas fa-trash"></i>
-                              </button>
-                            </div>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="preset-locked">
-                    <span>Save and sync your own presets with Premium.</span>
-                    <button
-                      className="preset-cta"
-                      onClick={() => {
-                        if (!user) {
-                          setIsLoginPromptOpen(true);
-                          return;
-                        }
-                        const url = new URL(PREMIUM_LINK);
-                        if (user.email) url.searchParams.set("prefilled_email", user.email);
-                        url.searchParams.set("client_reference_id", user.uid);
-                        window.open(url.toString(), "_blank", "noopener,noreferrer");
-                      }}
-                    >
-                      Buy it
-                    </button>
+                <>
+                  <div className="preset-create">
+                    <input
+                      type="text"
+                      placeholder="Preset name"
+                      value={presetName}
+                      onChange={(e) => setPresetName(e.target.value)}
+                    />
+                    <button onClick={savePreset}>Save</button>
                   </div>
-                )}
+                  <div className="preset-list">
+                    {presets.length === 0 ? (
+                      <div className="preset-empty">No presets yet.</div>
+                    ) : (
+                      presets.map((preset) => (
+                      <div
+                        className={`preset-item ${
+                          preset.sessionMinutes === sessionMinutes &&
+                          preset.themeIndex === currentThemeIndex &&
+                          preset.radioIndex === currentRadioIndex &&
+                          preset.ambientIndex === currentAmbientIndex &&
+                          preset.radioVolume === radioVolume &&
+                          preset.ambientVolume === ambientVolume
+                            ? "active"
+                            : ""
+                        }`}
+                        key={preset.id}
+                      >
+                          <div className="preset-info">
+                            <strong>{preset.name}</strong>
+                            <span>{preset.sessionMinutes}m · {themeLibrary[preset.themeIndex]?.name}</span>
+                          </div>
+                          <div className="preset-actions">
+                            <button onClick={() => applyPreset(preset)}>Apply</button>
+                            <button className="preset-delete" onClick={() => deletePreset(preset.id)}>
+                              <i className="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                  {!isPremium ? (
+                    <div className="preset-locked">
+                      <span>
+                        {!user
+                          ? "Log in to save presets. Free plan: up to 2."
+                          : "Free plan: up to 2 presets. Upgrade to save more."}
+                      </span>
+                      <button
+                        className="preset-cta"
+                        onClick={() => {
+                          if (!user) {
+                            setIsLoginPromptOpen(true);
+                            return;
+                          }
+                          const url = new URL(PREMIUM_LINK);
+                          if (user.email) url.searchParams.set("prefilled_email", user.email);
+                          url.searchParams.set("client_reference_id", user.uid);
+                          window.open(url.toString(), "_blank", "noopener,noreferrer");
+                        }}
+                      >
+                        Buy it
+                      </button>
+                    </div>
+                  ) : null}
+                </>
               </div>
             </div>
           </div>

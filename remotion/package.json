@@ -1,0 +1,14 @@
+{
+  "name": "vibedesk-trailer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "remotion studio src/index.jsx",
+    "render": "remotion render src/index.jsx trailer --codec=h264",
+    "still": "remotion still src/index.jsx trailer"
+  },
+  "dependencies": {
+    "remotion": "^4.0.250",
+    "@remotion/cli": "^4.0.250"
+  }
+}
