@@ -1707,7 +1707,7 @@ export default function App() {
           Created by <strong>Kappaemme</strong>
         </span>
         <div className="social-separator"></div>
-        <a href="https://x.com/Kappaemme1926" target="_blank" rel="noreferrer">
+        <a href="https://x.com/Kappaemmedev" target="_blank" rel="noreferrer">
           <i className="fa-brands fa-x-twitter"></i>
         </a>
         <a href="https://github.com/Kappaemme-git" target="_blank" rel="noreferrer">
