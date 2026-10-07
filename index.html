@@ -15,7 +15,23 @@
       name="keywords"
       content="lofi timer, pomodoro, focus music, study timer, ambient noise, vibedesk, productivity app"
     />
-    <meta name="author" content="Kappaemme" />
+    <meta name="author" content="Francesco Mistero (Kappaemme)" />
+    <link rel="about" href="/about.html" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VibeDesk",
+        "url": "https://www.vibedesk.online/",
+        "description": "A browser-based focus app with a Pomodoro timer, music, ambient sounds, notes, tasks, and progress tracking.",
+        "creator": {
+          "@type": "Person",
+          "name": "Francesco Mistero",
+          "alternateName": "Kappaemme",
+          "email": "hello@vibedesk.online"
+        }
+      }
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.vibedesk.online/" />
     <meta property="og:title" content="VibeDesk | Your Personal Lofi Focus Space 🎧" />
@@ -50,6 +66,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>VibeDesk</h1>
+        <p>VibeDesk is an independent focus app started in November 2025 by Francesco Mistero (Kappaemme).</p>
+        <p>Contact: <a href="mailto:hello@vibedesk.online">hello@vibedesk.online</a></p>
+        <p><a href="/about.html">About VibeDesk</a></p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

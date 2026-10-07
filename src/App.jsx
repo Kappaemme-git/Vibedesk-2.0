@@ -1707,6 +1707,8 @@ export default function App() {
           Created by <strong>Kappaemme</strong>
         </span>
         <div className="social-separator"></div>
+        <a className="footer-text-link" href="/about.html">About</a>
+        <a className="footer-text-link footer-email" href="mailto:hello@vibedesk.online">hello@vibedesk.online</a>
         <a href="https://x.com/Kappaemmedev" target="_blank" rel="noreferrer">
           <i className="fa-brands fa-x-twitter"></i>
         </a>
