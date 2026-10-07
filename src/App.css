@@ -1927,6 +1927,8 @@ body.christmas-mode #timer-display { text-shadow: 0 0 30px rgba(255, 223, 128, 0
     opacity: 0.6;
 }
 #credits-footer a { color: #fff; text-decoration: none; font-size: 1.1rem; }
+#credits-footer .footer-text-link { font-size: 0.82rem; font-weight: 700; }
+#credits-footer .footer-text-link:hover { text-decoration: underline; }
 .social-separator { width: 1px; height: 16px; background: rgba(255,255,255,0.3); }
 .coffee-btn {
     display: flex; align-items: center; gap: 6px;
@@ -1955,8 +1957,10 @@ body.christmas-mode #timer-display { text-shadow: 0 0 30px rgba(255, 223, 128, 0
     #reset-stats-btn { justify-self: end; }
 
     /* Footer Mobile */
-    #credits-footer { right: 20px; left: auto; transform: none; bottom: 20px; padding: 8px 15px; white-space: nowrap; }
+    #credits-footer { right: 20px; left: auto; transform: none; bottom: 20px; padding: 8px 12px; gap: 8px; white-space: nowrap; }
     #credits-footer > span:first-child, .coffee-text, .social-separator { display: none; }
+    #credits-footer > a[href^="https://"] { display: none; }
+    #credits-footer .footer-text-link { font-size: 0.7rem; }
     .coffee-btn { padding: 8px; aspect-ratio: 1/1; justify-content: center; border-radius: 50%; min-width: 35px; }
 
     /* Posizione Tasti Dock */
@@ -2091,7 +2095,8 @@ body.christmas-mode #timer-display { text-shadow: 0 0 30px rgba(255, 223, 128, 0
         left: auto;
         transform: none;
         bottom: 20px;
-        padding: 8px 15px;
+        padding: 8px 12px;
+        gap: 8px;
         white-space: nowrap;
     }
 
@@ -2099,6 +2104,14 @@ body.christmas-mode #timer-display { text-shadow: 0 0 30px rgba(255, 223, 128, 0
     .coffee-text,
     .social-separator {
         display: none;
+    }
+
+    #credits-footer > a[href^="https://"] {
+        display: none;
+    }
+
+    #credits-footer .footer-text-link {
+        font-size: 0.7rem;
     }
 
     .coffee-btn {
